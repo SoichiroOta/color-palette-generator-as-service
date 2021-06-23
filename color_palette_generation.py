@@ -1,5 +1,7 @@
 import colorsys
 
+import numpy as np
+
 
 def hex_to_rgb(hex_):
     hex_ = hex_.lstrip('#')
@@ -28,9 +30,9 @@ def rgb_to_hsv(rgb):
 
 
 def hsv_to_rgb(hsv):
-    max_rgb = 255.0
-    raw_rgb = colorsys.hsv_to_rgb(*hsv)
-    return tuple([int(round(max_rgb * c)) for c in raw_rgb])
+    max_rgb = 255
+    raw_rgb = np.array(colorsys.hsv_to_rgb(*hsv)).astype(int)
+    return tuple(max_rgb * raw_rgb)
 
 
 def hex_to_hsv(hex):
